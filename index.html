@@ -1115,6 +1115,27 @@ function slide3(){
     sul:'rgba(148,163,184,0.7)',
     other:'rgba(100,116,139,0.55)',
   };
+
+  // Plugin inline para mostrar valor R$ no final de cada barra
+  const barLabels={
+    id:'barLabels',
+    afterDatasetsDraw(chart){
+      const{ctx,scales:{x}}=chart;
+      const ds=chart.data.datasets[0];
+      chart.getDatasetMeta(0).data.forEach((bar,i)=>{
+        const val=ds.data[i];
+        const txt=val>=1?`R$ ${val.toFixed(1)} Bi`:`R$ ${(val*1000).toFixed(0)} Mi`;
+        ctx.save();
+        ctx.fillStyle='#334155';
+        ctx.font='600 11px Inter, sans-serif';
+        ctx.textAlign='left';
+        ctx.textBaseline='middle';
+        ctx.fillText(txt,bar.x+5,bar.y);
+        ctx.restore();
+      });
+    }
+  };
+
   const ctx=document.getElementById('chart-mercado').getContext('2d');
   new Chart(ctx,{
     type:'bar',
@@ -1128,30 +1149,39 @@ function slide3(){
     },
     options:{
       indexAxis:'y',responsive:true,maintainAspectRatio:true,
+      layout:{padding:{right:85}},
       plugins:{
         legend:{display:false},
         tooltip:{callbacks:{
           title:c=>{const m=sorted[c[0].dataIndex];return`${m.nome} (${m.uf})`;},
           label:c=>{
             const m=sorted[c.dataIndex];
+            const e=ESTADOS.find(x=>x.uf===m.uf);
             const pct=(m.valor/62669696718*100).toFixed(1);
-            return[
-              ` Mercado potencial: R$ ${(m.valor/1e9).toFixed(2)} Bi`,
+            const lines=[
+              ` Mercado potencial: R$ ${(m.valor/1e9).toFixed(1)} Bi`,
               ` Pacientes potenciais: ${m.incidencia.toLocaleString('pt-BR')}`,
               ` % do Brasil: ${pct}%`,
             ];
+            if(e){
+              const cresc=Math.round((300-e.fator)/300*100);
+              if(cresc>0) lines.push(` Crescimento até mercado maduro: ${cresc}%`);
+              else lines.push(` Mercado já além do benchmark (fator ${e.fator.toFixed(0)})`);
+            }
+            return lines;
           }
         }}
       },
       scales:{
         x:{
           grid:{color:'#f1f5f9'},
-          ticks:{font:{size:11},callback:v=>`R$ ${v} Bi`},
-          title:{display:true,text:'Valor do mercado potencial (R$ Bilhões)',font:{size:11},color:'#94a3b8'}
+          ticks:{font:{size:12},callback:v=>`${v} Bi`},
+          title:{display:false}
         },
-        y:{grid:{display:false},ticks:{font:{size:12,weight:'600'}}}
+        y:{grid:{display:false},ticks:{font:{size:13,weight:'700'},color:'#1e293b'}}
       }
-    }
+    },
+    plugins:[barLabels]
   });
 }
 
