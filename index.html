@@ -418,6 +418,28 @@ svg.bmap { display: block; }
   .bnav { padding: 10px 18px; }
   .map-wrap.tall { height: 280px; }
 }
+
+/* ═══ SCROLLABLE TABLE ══════════════════════════════════ */
+.tbl-scroll {
+  position: relative;
+}
+.tbl-scroll-inner {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* gradiente direito indicando scroll */
+.tbl-scroll::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 32px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.95));
+  pointer-events: none;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tbl-scroll.scrollable::after { opacity: 1; }
 </style>
 </head>
 <body>
@@ -531,10 +553,14 @@ svg.bmap { display: block; }
         <div class="card">
           <div class="card-body">
             <div class="card-title">Dados Consolidados por Região</div>
-            <table class="tbl">
-              <thead><tr><th>Região</th><th class="r">Consumo</th><th class="r">Benef.</th><th class="r">Fator</th></tr></thead>
-              <tbody id="dash-reg-tbl"></tbody>
-            </table>
+            <div class="tbl-scroll" id="tbl-scroll-wrap">
+              <div class="tbl-scroll-inner">
+                <table class="tbl">
+                  <thead><tr><th>Região</th><th class="r">Consumo</th><th class="r">Benef.</th><th class="r">Fator</th></tr></thead>
+                  <tbody id="dash-reg-tbl"></tbody>
+                </table>
+              </div>
+            </div>
             <div class="bench">
               <div class="bench-t">Benchmark de Maturidade</div>
               <div class="bench-p">O Sul (259,67) é a referência. RS atinge <strong>fator 316</strong> — usamos <strong>300 como proxy de mercado maduro</strong>. Todas as regiões têm espaço de crescimento.</div>
@@ -875,6 +901,7 @@ function slide0(){
     </tr>`;
   });
   tb.innerHTML+=`<tr class="foot"><td>Brasil</td><td class="r">R$ 9,4B</td><td class="r">52,9M</td><td class="r">177,27</td></tr>`;
+  setTimeout(updateScrollHint, 50);
 }
 
 // ── SLIDE 1 · ACIMA E ABAIXO ──────────────────────────
@@ -922,6 +949,20 @@ function slide2(){
   cards('tp',PRIORIDADES.tp,'tp');
 }
 
+
+// ── SCROLL HINT ───────────────────────────────────────
+function updateScrollHint() {
+  const wrap = document.getElementById('tbl-scroll-wrap');
+  if (!wrap) return;
+  const inner = wrap.querySelector('.tbl-scroll-inner');
+  if (!inner) return;
+  const scrollable = inner.scrollWidth > inner.clientWidth;
+  wrap.classList.toggle('scrollable', scrollable);
+  inner.addEventListener('scroll', () => {
+    const atEnd = inner.scrollLeft + inner.clientWidth >= inner.scrollWidth - 4;
+    wrap.classList.toggle('scrollable', !atEnd);
+  }, { passive: true });
+}
 // ── INIT ──────────────────────────────────────────────
 inited[0]=true;
 window.addEventListener('load',()=>boot(0));
