@@ -485,6 +485,16 @@ svg.bmap { display: block; }
         <div class="nav-sub">Prioridades</div>
       </div>
     </div>
+
+    <div class="nav-item" onclick="goTo(3)" id="nav-3">
+      <div class="nav-dot">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="20" x2="18" y2="4"/><line x1="12" y1="20" x2="12" y2="10"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      </div>
+      <div class="nav-info">
+        <div class="nav-lbl">Mercado Potencial</div>
+        <div class="nav-sub">Valor por estado</div>
+      </div>
+    </div>
   </nav>
   <div class="sb-footer">
     <div class="sb-src">Fonte: Elfa/IQVIA (consumo R$)<br>ANS Dez/2025 (beneficiários)<br>MAT Fevereiro/2026</div>
@@ -659,6 +669,80 @@ svg.bmap { display: block; }
       </div>
     </div>
 
+
+    <!-- ══ SLIDE 3 · MERCADO POTENCIAL ══════════════════ -->
+    <div class="slide" id="slide-3">
+      <div class="sh">
+        <div class="sh-eye">Potencial de Mercado</div>
+        <div class="sh-title">Tamanho do Mercado Potencial por Estado</div>
+        <div class="sh-desc">Estimativa por incidência de pacientes potenciais × 7,45 visitas/ano × ticket médio R$ 11.671 (base Rede Autoimune). Estados do Sul aparecem bem posicionados pois a incidência bruta não desconta pacientes já atendidos.</div>
+      </div>
+
+      <div class="kpi-row three">
+        <div class="kpi">
+          <div class="kpi-accent blue"></div>
+          <div class="kpi-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="kpi-lbl">Mercado Potencial Total</div>
+          <div class="kpi-val blue">R$ 62,7 Bi</div>
+          <div class="kpi-sub">Todos os 27 estados</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-accent green"></div>
+          <div class="kpi-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-green)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="kpi-lbl">Pacientes Potenciais</div>
+          <div class="kpi-val green">~721k</div>
+          <div class="kpi-sub">Incidência estimada total</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-accent rose"></div>
+          <div class="kpi-icon rose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-rose)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="kpi-lbl">Maior Mercado — SP</div>
+          <div class="kpi-val" style="color:var(--c-rose)">R$ 22 Bi</div>
+          <div class="kpi-sub">35% do potencial nacional</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title-row">
+            <div class="card-title">Valor do Mercado Potencial por Estado</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-rose);display:inline-block"></span>Tier 1</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-amber);display:inline-block"></span>Tier 2</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-primary-l);display:inline-block"></span>Tier 3</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-green);display:inline-block"></span>Já presente</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block"></span>Demais</span>
+            </div>
+          </div>
+          <canvas id="chart-mercado" height="680"></canvas>
+        </div>
+      </div>
+
+      <div class="insight-row">
+        <div class="insight blue">
+          <div class="ins-label">Concentração</div>
+          <div class="ins-title">Sudeste: 59% do potencial</div>
+          <div class="ins-desc">SP + MG + RJ + ES somam <strong>R$ 37,2 Bi</strong> dos R$ 62,7 Bi nacionais. Confirma o foco estratégico no Tier 1.</div>
+        </div>
+        <div class="insight rose">
+          <div class="ins-label">Atenção — Sul</div>
+          <div class="ins-title">Sul bem posicionado, mas…</div>
+          <div class="ins-desc">PR, RS e SC aparecem no topo pela incidência bruta, mas têm fator alto — mercado <strong>já amplamente servido</strong>. O gap real é pequeno.</div>
+        </div>
+        <div class="insight green">
+          <div class="ins-label">Oportunidade</div>
+          <div class="ins-title">GO: R$ 2,3 Bi subexplorados</div>
+          <div class="ins-desc">Goiás tem fator 72 (muito baixo) e R$ 2,3 Bi de potencial. O mercado existe mas ainda não foi captado.</div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /slides-wrap -->
 
   <!-- ══ BOTTOM NAV ══════════════════════════════════ -->
@@ -669,7 +753,7 @@ svg.bmap { display: block; }
     </button>
     <div style="display:flex;align-items:center;gap:16px">
       <div class="ndots" id="dots"></div>
-      <span class="ncount" id="ncount">1 / 3</span>
+      <span class="ncount" id="ncount">1 / 4</span>
     </div>
     <button class="nbtn" id="btn-next" onclick="next()">
       Próximo
@@ -686,7 +770,7 @@ svg.bmap { display: block; }
 <script>
 const MEDIA  = 177.27;
 const MADURO = 300;
-const N      = 3;
+const N      = 4;
 
 const ESTADOS = [
   {uf:'SP',nome:'São Paulo',          reg:'Sudeste',      consumo:3399170946, ben:18621247, fator:182.54},
@@ -748,6 +832,36 @@ const PRIORIDADES = {
   ],
 };
 
+
+const MERCADOS = [
+  {uf:'SP',nome:'São Paulo',          incidencia:253249, valor:22019731091, tier:'t1'},
+  {uf:'MG',nome:'Minas Gerais',       incidencia:80274,  valor:6979753020,  tier:'t1'},
+  {uf:'RJ',nome:'Rio de Janeiro',     incidencia:75687,  valor:6580942323,  tier:'t1'},
+  {uf:'PR',nome:'Paraná',             incidencia:43499,  valor:3782225625,  tier:'sul'},
+  {uf:'RS',nome:'Rio Grande do Sul',  incidencia:36284,  valor:3154892151,  tier:'sul'},
+  {uf:'GO',nome:'Goiás',              incidencia:26680,  valor:2319823166,  tier:'t2'},
+  {uf:'BA',nome:'Bahia',              incidencia:23896,  valor:2077714580,  tier:'t2'},
+  {uf:'SC',nome:'Santa Catarina',     incidencia:23756,  valor:2065591532,  tier:'sul'},
+  {uf:'CE',nome:'Ceará',              incidencia:20296,  valor:1764681666,  tier:'t2'},
+  {uf:'PE',nome:'Pernambuco',         incidencia:19925,  valor:1732474940,  tier:'pres'},
+  {uf:'ES',nome:'Espírito Santo',     incidencia:19013,  valor:1653192662,  tier:'t2'},
+  {uf:'DF',nome:'Distrito Federal',   incidencia:14000,  valor:1217318688,  tier:'pres'},
+  {uf:'PA',nome:'Pará',               incidencia:12110,  valor:1052959853,  tier:'other'},
+  {uf:'AM',nome:'Amazonas',           incidencia:9505,   valor:826434328,   tier:'t3'},
+  {uf:'MS',nome:'Mato Grosso do Sul', incidencia:9355,   valor:813440955,   tier:'other'},
+  {uf:'MT',nome:'Mato Grosso',        incidencia:9333,   valor:811472083,   tier:'other'},
+  {uf:'RN',nome:'Rio Grande do Norte',incidencia:8739,   valor:759833240,   tier:'t3'},
+  {uf:'MA',nome:'Maranhão',           incidencia:7258,   valor:631091478,   tier:'other'},
+  {uf:'PB',nome:'Paraíba',            incidencia:6285,   valor:546497384,   tier:'other'},
+  {uf:'PI',nome:'Piauí',              incidencia:5603,   valor:487216007,   tier:'other'},
+  {uf:'AL',nome:'Alagoas',            incidencia:5304,   valor:461218619,   tier:'other'},
+  {uf:'SE',nome:'Sergipe',            incidencia:4645,   valor:403883646,   tier:'other'},
+  {uf:'RO',nome:'Rondônia',           incidencia:2319,   valor:201625503,   tier:'other'},
+  {uf:'TO',nome:'Tocantins',          incidencia:1785,   valor:155208606,   tier:'other'},
+  {uf:'AP',nome:'Amapá',              incidencia:878,    valor:76349664,    tier:'other'},
+  {uf:'AC',nome:'Acre',               incidencia:637,    valor:55416948,    tier:'other'},
+  {uf:'RR',nome:'Roraima',            incidencia:445,    valor:38706960,    tier:'other'},
+];
 // ── HELPERS ──────────────────────────────────────────
 function fmtBRL(n) {
   if (n >= 1e9) return `R$ ${(n/1e9).toFixed(1)}B`;
@@ -822,6 +936,7 @@ function boot(n){
   if(n===0)slide0();
   if(n===1)slide1();
   if(n===2)slide2();
+  if(n===3)slide3();
 }
 
 // ── BRAZIL MAP ────────────────────────────────────────
@@ -988,6 +1103,58 @@ function updateScrollHint() {
     wrap.classList.toggle('scrollable', !atEnd);
   }, { passive: true });
 }
+
+// ── SLIDE 3 · MERCADO POTENCIAL ───────────────────────
+function slide3(){
+  const sorted=[...MERCADOS].sort((a,b)=>b.valor-a.valor);
+  const tierColor={
+    t1:'rgba(225,29,72,0.82)',
+    t2:'rgba(217,119,6,0.82)',
+    t3:'rgba(59,130,246,0.82)',
+    pres:'rgba(5,150,105,0.82)',
+    sul:'rgba(148,163,184,0.7)',
+    other:'rgba(100,116,139,0.55)',
+  };
+  const ctx=document.getElementById('chart-mercado').getContext('2d');
+  new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:sorted.map(m=>m.uf),
+      datasets:[{
+        data:sorted.map(m=>+(m.valor/1e9).toFixed(2)),
+        backgroundColor:sorted.map(m=>tierColor[m.tier]),
+        borderRadius:4,borderSkipped:false,borderWidth:0,
+      }]
+    },
+    options:{
+      indexAxis:'y',responsive:true,maintainAspectRatio:true,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          title:c=>{const m=sorted[c[0].dataIndex];return`${m.nome} (${m.uf})`;},
+          label:c=>{
+            const m=sorted[c.dataIndex];
+            const pct=(m.valor/62669696718*100).toFixed(1);
+            return[
+              ` Mercado potencial: R$ ${(m.valor/1e9).toFixed(2)} Bi`,
+              ` Pacientes potenciais: ${m.incidencia.toLocaleString('pt-BR')}`,
+              ` % do Brasil: ${pct}%`,
+            ];
+          }
+        }}
+      },
+      scales:{
+        x:{
+          grid:{color:'#f1f5f9'},
+          ticks:{font:{size:11},callback:v=>`R$ ${v} Bi`},
+          title:{display:true,text:'Valor do mercado potencial (R$ Bilhões)',font:{size:11},color:'#94a3b8'}
+        },
+        y:{grid:{display:false},ticks:{font:{size:12,weight:'600'}}}
+      }
+    }
+  });
+}
+
 // ── INIT ──────────────────────────────────────────────
 inited[0]=true;
 window.addEventListener('load',()=>boot(0));
