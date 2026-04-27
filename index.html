@@ -397,7 +397,7 @@ svg.bmap { display: block; }
 }
 @media (max-width: 899px) {
   /* mapa proporcional ao Brasil (~3:2) no mobile */
-  #slide-1 .map-wrap { flex:none!important; height:auto!important; aspect-ratio:3/2; min-height:unset; }
+  #slide-1 .map-wrap { flex:none!important; height:56vh!important; min-height:320px; aspect-ratio:unset; }
 
   :root { --sidebar-w: 60px; }
   .sb-pill, .sb-name, .sb-meta, .sb-src, .nav-info, .sb-footer .sb-src, .nav-section { display: none; }
@@ -810,8 +810,8 @@ function showTip(html,e){
   tip.style.top=Math.max(10,e.clientY-64)+'px';
 }
 function hideTip(){tip.style.display='none';}
+let _lastTouch=0;
 document.addEventListener('touchstart', hideTip, {passive:true});
-document.addEventListener('click', hideTip);
 
 // ── CHART.JS DEFAULTS ─────────────────────────────────
 Chart.defaults.font.family="'Fira Sans','Inter',sans-serif";
@@ -851,9 +851,11 @@ async function drawMap(svgId,colorFn,tipFn){
     .attr('class','st').attr('d',path)
     .attr('fill',d=>{const e=ESTADOS.find(x=>x.uf===d.properties.sigla);return e?colorFn(e.fator):'#e2e8f0';})
     .on('mousemove',(ev,d)=>{const e=ESTADOS.find(x=>x.uf===d.properties.sigla);if(e)showTip(tipFn(e),ev);})
-    .on('mouseleave',hideTip)
+    .on('mouseleave',()=>{if(Date.now()-_lastTouch>600)hideTip();})
     .on('touchstart',(ev,d)=>{
       ev.stopPropagation();
+      ev.preventDefault();
+      _lastTouch=Date.now();
       const t=ev.touches[0];
       const e=ESTADOS.find(x=>x.uf===d.properties.sigla);
       if(e)showTip(tipFn(e),{clientX:t.clientX,clientY:t.clientY});
