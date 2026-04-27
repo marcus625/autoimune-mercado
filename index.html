@@ -810,6 +810,8 @@ function showTip(html,e){
   tip.style.top=Math.max(10,e.clientY-64)+'px';
 }
 function hideTip(){tip.style.display='none';}
+document.addEventListener('touchstart', hideTip, {passive:true});
+document.addEventListener('click', hideTip);
 
 // ── CHART.JS DEFAULTS ─────────────────────────────────
 Chart.defaults.font.family="'Fira Sans','Inter',sans-serif";
@@ -838,8 +840,9 @@ async function drawMap(svgId,colorFn,tipFn){
   const geo=await getGeo();
   const el=document.getElementById(svgId);
   if(!geo){el.parentElement.insertAdjacentHTML('beforeend','<p style="color:#94a3b8;font-size:14px;text-align:center;padding:60px 0">Mapa requer conexão com internet.</p>');return;}
-  const W=el.parentElement.clientWidth-44;
-  const H=el.parentElement.clientHeight||490;
+  const rect=el.parentElement.getBoundingClientRect();
+  const W=Math.floor(rect.width);
+  const H=Math.floor(rect.height)||Math.floor(W*0.67);
   el.setAttribute('width',W);el.setAttribute('height',H);
   const proj=d3.geoMercator().fitSize([W,H],geo);
   const path=d3.geoPath().projection(proj);
@@ -848,7 +851,13 @@ async function drawMap(svgId,colorFn,tipFn){
     .attr('class','st').attr('d',path)
     .attr('fill',d=>{const e=ESTADOS.find(x=>x.uf===d.properties.sigla);return e?colorFn(e.fator):'#e2e8f0';})
     .on('mousemove',(ev,d)=>{const e=ESTADOS.find(x=>x.uf===d.properties.sigla);if(e)showTip(tipFn(e),ev);})
-    .on('mouseleave',hideTip);
+    .on('mouseleave',hideTip)
+    .on('touchstart',(ev,d)=>{
+      ev.stopPropagation();
+      const t=ev.touches[0];
+      const e=ESTADOS.find(x=>x.uf===d.properties.sigla);
+      if(e)showTip(tipFn(e),{clientX:t.clientX,clientY:t.clientY});
+    },{passive:false});
   const sm=new Set(['AP','RR','AC','RO','SE','AL','PB','RN','ES','DF','MS','TO']);
   svg.selectAll('text').data(geo.features).enter().append('text')
     .attr('class','slbl').attr('x',d=>path.centroid(d)[0]).attr('y',d=>path.centroid(d)[1]+4)
