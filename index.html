@@ -422,6 +422,27 @@ svg.bmap { display: block; }
   .map-wrap.tall { height: 280px; }
 }
 
+/* ═══ SCROLLABLE CHART ══════════════════════════════════ */
+.chart-scroll-wrap {
+  position: relative;
+  margin-top: 8px;
+}
+.chart-scroll-inner {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.chart-scroll-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 16px; width: 36px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.96));
+  pointer-events: none;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.chart-scroll-wrap.scrollable::after { opacity: 1; }
+
 /* ═══ SCROLLABLE TABLE ══════════════════════════════════ */
 .tbl-scroll {
   position: relative;
@@ -720,7 +741,13 @@ svg.bmap { display: block; }
               <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block"></span>Demais</span>
             </div>
           </div>
-          <canvas id="chart-mercado" height="680"></canvas>
+          <div class="chart-scroll-wrap" id="chart-mercado-wrap">
+            <div class="chart-scroll-inner">
+              <div style="min-width:580px;position:relative;">
+                <canvas id="chart-mercado" height="680"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1183,6 +1210,16 @@ function slide3(){
     },
     plugins:[barLabels]
   });
+
+  // scroll hint
+  const cw=document.getElementById('chart-mercado-wrap');
+  const ci=cw.querySelector('.chart-scroll-inner');
+  if(ci.scrollWidth>ci.clientWidth) cw.classList.add('scrollable');
+  ci.addEventListener('scroll',()=>{
+    const atEnd=ci.scrollLeft+ci.clientWidth>=ci.scrollWidth-4;
+    cw.classList.toggle('scrollable',!atEnd);
+  },{passive:true});
+  setTimeout(()=>{if(ci.scrollWidth>ci.clientWidth)cw.classList.add('scrollable');},300);
 }
 
 // ── INIT ──────────────────────────────────────────────
