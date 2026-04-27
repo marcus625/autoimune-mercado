@@ -396,6 +396,9 @@ svg.bmap { display: block; }
   .kpi-val { font-size: 32px; }
 }
 @media (max-width: 899px) {
+  /* mapa proporcional ao Brasil (~3:2) no mobile */
+  #slide-1 .map-wrap { flex:none!important; height:auto!important; aspect-ratio:3/2; min-height:unset; }
+
   :root { --sidebar-w: 60px; }
   .sb-pill, .sb-name, .sb-meta, .sb-src, .nav-info, .sb-footer .sb-src, .nav-section { display: none; }
   .sidebar { align-items: center; }
@@ -905,7 +908,8 @@ function slide0(){
 }
 
 // ── SLIDE 1 · ACIMA E ABAIXO ──────────────────────────
-function slide1(){
+function drawSlide1Map(){
+  d3.select('#map1').selectAll('*').remove();
   drawMap('map1',f=>divColor(f),e=>{
     const d=((e.fator/MEDIA-1)*100).toFixed(1);
     const s=d>=0?'+':'';
@@ -914,12 +918,22 @@ function slide1(){
       <div class="trow"><span>vs. média</span><span class="tval">${s}${d}%</span></div>
       <div class="trow"><span>Upside →300</span><span class="tval">+${((MADURO/e.fator-1)*100).toFixed(0)}%</span></div>`;
   });
+}
+function slide1(){
+  drawSlide1Map();
   const above=ESTADOS.filter(e=>e.fator>=MEDIA).sort((a,b)=>b.fator-a.fator);
   const below=ESTADOS.filter(e=>e.fator<MEDIA).sort((a,b)=>b.fator-a.fator);
   const la=document.getElementById('list-above');
   above.forEach(e=>{la.innerHTML+=`<div class="srow"><span><span class="suf">${e.uf}</span><span class="snm">${e.nome.split(' ')[0]}</span></span><span class="bdg bdg-g">${e.fator.toFixed(0)}</span></div>`;});
   const lb=document.getElementById('list-below');
   below.forEach(e=>{const c=e.fator>=140?'bdg-y':'bdg-r';lb.innerHTML+=`<div class="srow"><span><span class="suf">${e.uf}</span><span class="snm">${e.nome.split(' ')[0]}</span></span><span class="bdg ${c}">${e.fator.toFixed(0)}</span></div>`;});
+  // redesenha o mapa ao redimensionar (corrige descentralização em mobile/rotação)
+  const mapWrap=document.getElementById('map1').parentElement;
+  let resizeTimer;
+  new ResizeObserver(()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(drawSlide1Map,150);
+  }).observe(mapWrap);
 }
 
 // ── SLIDE 2 · ONDE EXPLORAR ───────────────────────────
