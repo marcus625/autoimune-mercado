@@ -696,7 +696,7 @@ svg.bmap { display: block; }
       <div class="sh">
         <div class="sh-eye">Potencial de Mercado</div>
         <div class="sh-title">Tamanho do Mercado Potencial por Estado</div>
-        <div class="sh-desc">Estimativa por incidência de pacientes potenciais × 7,45 visitas/ano × ticket médio R$ 11.671 (base Rede Autoimune). Estados do Sul aparecem bem posicionados pois a incidência bruta não desconta pacientes já atendidos.</div>
+        <div class="sh-desc">Mercado atual por estado (FEV/2026) vs. Valor Mercado Pleno estimado pelo benchmark de RS (fator 316,82). A Parcela Adicional representa o upside ainda não capturado em cada estado.</div>
       </div>
 
       <div class="kpi-row three">
@@ -705,40 +705,37 @@ svg.bmap { display: block; }
           <div class="kpi-icon blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           </div>
-          <div class="kpi-lbl">Mercado Potencial Total</div>
-          <div class="kpi-val blue">R$ 62,7 Bi</div>
-          <div class="kpi-sub">Todos os 27 estados</div>
+          <div class="kpi-lbl">Valor Mercado Pleno Total</div>
+          <div class="kpi-val blue">R$ 16,8 Bi</div>
+          <div class="kpi-sub">Benchmark fator 316,82 (RS)</div>
         </div>
         <div class="kpi">
           <div class="kpi-accent green"></div>
           <div class="kpi-icon green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-green)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-green)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           </div>
-          <div class="kpi-lbl">Pacientes Potenciais</div>
-          <div class="kpi-val green">~721k</div>
-          <div class="kpi-sub">Incidência estimada total</div>
+          <div class="kpi-lbl">Mercado Atual (FEV/26)</div>
+          <div class="kpi-val green">R$ 9,4 Bi</div>
+          <div class="kpi-sub">Consumo real — 27 estados</div>
         </div>
         <div class="kpi">
           <div class="kpi-accent rose"></div>
           <div class="kpi-icon rose">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-rose)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-rose)" stroke-width="2"><path d="M18 15l-6-6-6 6"/><path d="M12 9v12"/></svg>
           </div>
-          <div class="kpi-lbl">Maior Mercado — SP</div>
-          <div class="kpi-val" style="color:var(--c-rose)">R$ 22 Bi</div>
-          <div class="kpi-sub">35% do potencial nacional</div>
+          <div class="kpi-lbl">Parcela Adicional Total</div>
+          <div class="kpi-val" style="color:var(--c-rose)">R$ 7,4 Bi</div>
+          <div class="kpi-sub">Upside ainda não capturado</div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-body">
           <div class="card-title-row">
-            <div class="card-title">Valor do Mercado Potencial por Estado</div>
+            <div class="card-title">Valor de Mercado Pleno por Estado (Benchmark: 316,82)</div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-rose);display:inline-block"></span>Tier 1</span>
-              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-amber);display:inline-block"></span>Tier 2</span>
-              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-primary-l);display:inline-block"></span>Tier 3</span>
-              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--c-green);display:inline-block"></span>Já presente</span>
-              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block"></span>Demais</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(59,130,246,0.85);display:inline-block"></span>Mercado Atual</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(245,158,11,0.75);display:inline-block"></span>Parcela Adicional</span>
             </div>
           </div>
           <div class="chart-scroll-wrap" id="chart-mercado-wrap">
@@ -753,19 +750,19 @@ svg.bmap { display: block; }
 
       <div class="insight-row">
         <div class="insight blue">
-          <div class="ins-label">Concentração</div>
-          <div class="ins-title">Sudeste: 59% do potencial</div>
-          <div class="ins-desc">SP + MG + RJ + ES somam <strong>R$ 37,2 Bi</strong> dos R$ 62,7 Bi nacionais. Confirma o foco estratégico no Tier 1.</div>
+          <div class="ins-label">Maior Upside Absoluto</div>
+          <div class="ins-title">SP: R$ 2,5 Bi ainda pendentes</div>
+          <div class="ins-desc">São Paulo tem o maior gap absoluto do país — <strong>R$ 2,5 Bi</strong> de parcela adicional sobre um mercado atual de R$ 3,4 Bi. Fator atual: 182,54.</div>
         </div>
         <div class="insight rose">
-          <div class="ins-label">Atenção — Sul</div>
-          <div class="ins-title">Sul bem posicionado, mas…</div>
-          <div class="ins-desc">PR, RS e SC aparecem no topo pela incidência bruta, mas têm fator alto — mercado <strong>já amplamente servido</strong>. O gap real é pequeno.</div>
+          <div class="ins-label">Maiores Gaps Proporcionais</div>
+          <div class="ins-title">GO (77%) e AM (87%) subexplorados</div>
+          <div class="ins-desc">Goiás e Amazonas têm os maiores percentuais ainda não capturados em relação ao mercado pleno — mercados com alta margem de expansão.</div>
         </div>
         <div class="insight green">
-          <div class="ins-label">Oportunidade</div>
-          <div class="ins-title">GO: R$ 2,3 Bi subexplorados</div>
-          <div class="ins-desc">Goiás tem fator 72 (muito baixo) e R$ 2,3 Bi de potencial. O mercado existe mas ainda não foi captado.</div>
+          <div class="ins-label">Benchmark de Referência</div>
+          <div class="ins-title">RS: fator 316,82 — sem adicional</div>
+          <div class="ins-desc">Rio Grande do Sul é o único estado já na maturidade plena. <strong>Parcela adicional = R$ 0</strong>. Referência para os demais estados.</div>
         </div>
       </div>
     </div>
@@ -797,6 +794,7 @@ svg.bmap { display: block; }
 <script>
 const MEDIA  = 177.27;
 const MADURO = 300;
+const BENCH  = 316.826448;
 const N      = 4;
 
 const ESTADOS = [
@@ -861,33 +859,33 @@ const PRIORIDADES = {
 
 
 const MERCADOS = [
-  {uf:'SP',nome:'São Paulo',          incidencia:253249, valor:22019731091, tier:'t1'},
-  {uf:'MG',nome:'Minas Gerais',       incidencia:80274,  valor:6979753020,  tier:'t1'},
-  {uf:'RJ',nome:'Rio de Janeiro',     incidencia:75687,  valor:6580942323,  tier:'t1'},
-  {uf:'PR',nome:'Paraná',             incidencia:43499,  valor:3782225625,  tier:'sul'},
-  {uf:'RS',nome:'Rio Grande do Sul',  incidencia:36284,  valor:3154892151,  tier:'sul'},
-  {uf:'GO',nome:'Goiás',              incidencia:26680,  valor:2319823166,  tier:'t2'},
-  {uf:'BA',nome:'Bahia',              incidencia:23896,  valor:2077714580,  tier:'t2'},
-  {uf:'SC',nome:'Santa Catarina',     incidencia:23756,  valor:2065591532,  tier:'sul'},
-  {uf:'CE',nome:'Ceará',              incidencia:20296,  valor:1764681666,  tier:'t2'},
-  {uf:'PE',nome:'Pernambuco',         incidencia:19925,  valor:1732474940,  tier:'pres'},
-  {uf:'ES',nome:'Espírito Santo',     incidencia:19013,  valor:1653192662,  tier:'t2'},
-  {uf:'DF',nome:'Distrito Federal',   incidencia:14000,  valor:1217318688,  tier:'pres'},
-  {uf:'PA',nome:'Pará',               incidencia:12110,  valor:1052959853,  tier:'other'},
-  {uf:'AM',nome:'Amazonas',           incidencia:9505,   valor:826434328,   tier:'t3'},
-  {uf:'MS',nome:'Mato Grosso do Sul', incidencia:9355,   valor:813440955,   tier:'other'},
-  {uf:'MT',nome:'Mato Grosso',        incidencia:9333,   valor:811472083,   tier:'other'},
-  {uf:'RN',nome:'Rio Grande do Norte',incidencia:8739,   valor:759833240,   tier:'t3'},
-  {uf:'MA',nome:'Maranhão',           incidencia:7258,   valor:631091478,   tier:'other'},
-  {uf:'PB',nome:'Paraíba',            incidencia:6285,   valor:546497384,   tier:'other'},
-  {uf:'PI',nome:'Piauí',              incidencia:5603,   valor:487216007,   tier:'other'},
-  {uf:'AL',nome:'Alagoas',            incidencia:5304,   valor:461218619,   tier:'other'},
-  {uf:'SE',nome:'Sergipe',            incidencia:4645,   valor:403883646,   tier:'other'},
-  {uf:'RO',nome:'Rondônia',           incidencia:2319,   valor:201625503,   tier:'other'},
-  {uf:'TO',nome:'Tocantins',          incidencia:1785,   valor:155208606,   tier:'other'},
-  {uf:'AP',nome:'Amapá',              incidencia:878,    valor:76349664,    tier:'other'},
-  {uf:'AC',nome:'Acre',               incidencia:637,    valor:55416948,    tier:'other'},
-  {uf:'RR',nome:'Roraima',            incidencia:445,    valor:38706960,    tier:'other'},
+  {uf:'SP',nome:'São Paulo',          consumo:3399170946, pleno:5899703548, adicional:2500532602},
+  {uf:'MG',nome:'Minas Gerais',       consumo:759966263,  pleno:1870071596, adicional:1110105332},
+  {uf:'RJ',nome:'Rio de Janeiro',     consumo:941090834,  pleno:1763219024, adicional:822128191},
+  {uf:'PR',nome:'Paraná',             consumo:699332621,  pleno:1013364325, adicional:314031704},
+  {uf:'RS',nome:'Rio Grande do Sul',  consumo:845284093,  pleno:845284093,  adicional:0},
+  {uf:'GO',nome:'Goiás',              consumo:141509727,  pleno:621545691,  adicional:480035963},
+  {uf:'BA',nome:'Bahia',              consumo:332719253,  pleno:556678010,  adicional:223958757},
+  {uf:'SC',nome:'Santa Catarina',     consumo:432300584,  pleno:553429905,  adicional:121129321},
+  {uf:'CE',nome:'Ceará',              consumo:268229836,  pleno:472807712,  adicional:204577876},
+  {uf:'PE',nome:'Pernambuco',         consumo:245093407,  pleno:464178627,  adicional:219085221},
+  {uf:'ES',nome:'Espírito Santo',     consumo:168482266,  pleno:442936681,  adicional:274454416},
+  {uf:'DF',nome:'Distrito Federal',   consumo:303711391,  pleno:326153819,  adicional:22442428},
+  {uf:'PA',nome:'Pará',               consumo:104430792,  pleno:282117477,  adicional:177686685},
+  {uf:'AM',nome:'Amazonas',           consumo:28286518,   pleno:221424935,  adicional:193138417},
+  {uf:'MS',nome:'Mato Grosso do Sul', consumo:140614021,  pleno:217943646,  adicional:77329625},
+  {uf:'MT',nome:'Mato Grosso',        consumo:107196101,  pleno:217416130,  adicional:110220029},
+  {uf:'RN',nome:'Rio Grande do Norte',consumo:113812201,  pleno:203580636,  adicional:89768435},
+  {uf:'MA',nome:'Maranhão',           consumo:53114018,   pleno:169087107,  adicional:115973090},
+  {uf:'PB',nome:'Paraíba',            consumo:75825210,   pleno:146421977,  adicional:70596767},
+  {uf:'PI',nome:'Piauí',              consumo:46565290,   pleno:130538833,  adicional:83973543},
+  {uf:'AL',nome:'Alagoas',            consumo:67454844,   pleno:123573404,  adicional:56118559},
+  {uf:'SE',nome:'Sergipe',            consumo:59608104,   pleno:108211757,  adicional:48603652},
+  {uf:'RO',nome:'Rondônia',           consumo:17742625,   pleno:54021127,   adicional:36278502},
+  {uf:'TO',nome:'Tocantins',          consumo:17709285,   pleno:41584739,   adicional:23875454},
+  {uf:'AP',nome:'Amapá',              consumo:9728928,    pleno:20456216,   adicional:10727289},
+  {uf:'AC',nome:'Acre',               consumo:13103108,   pleno:14847755,   adicional:1744647},
+  {uf:'RR',nome:'Roraima',            consumo:2587290,    pleno:10370680,   adicional:7783390},
 ];
 // ── HELPERS ──────────────────────────────────────────
 function fmtBRL(n) {
@@ -1133,24 +1131,17 @@ function updateScrollHint() {
 
 // ── SLIDE 3 · MERCADO POTENCIAL ───────────────────────
 function slide3(){
-  const sorted=[...MERCADOS].sort((a,b)=>b.valor-a.valor);
-  const tierColor={
-    t1:'rgba(225,29,72,0.82)',
-    t2:'rgba(217,119,6,0.82)',
-    t3:'rgba(59,130,246,0.82)',
-    pres:'rgba(5,150,105,0.82)',
-    sul:'rgba(148,163,184,0.7)',
-    other:'rgba(100,116,139,0.55)',
-  };
+  const sorted=[...MERCADOS].sort((a,b)=>b.pleno-a.pleno);
 
-  // Plugin inline para mostrar valor R$ no final de cada barra
   const barLabels={
     id:'barLabels',
     afterDatasetsDraw(chart){
-      const{ctx,scales:{x}}=chart;
-      const ds=chart.data.datasets[0];
-      chart.getDatasetMeta(0).data.forEach((bar,i)=>{
-        const val=ds.data[i];
+      const{ctx}=chart;
+      const meta=chart.getDatasetMeta(1);
+      if(!meta||!meta.data)return;
+      meta.data.forEach((bar,i)=>{
+        const m=sorted[i];
+        const val=m.pleno/1e9;
         const txt=val>=1?`R$ ${val.toFixed(1)} Bi`:`R$ ${(val*1000).toFixed(0)} Mi`;
         ctx.save();
         ctx.fillStyle='#334155';
@@ -1168,50 +1159,61 @@ function slide3(){
     type:'bar',
     data:{
       labels:sorted.map(m=>m.uf),
-      datasets:[{
-        data:sorted.map(m=>+(m.valor/1e9).toFixed(2)),
-        backgroundColor:sorted.map(m=>tierColor[m.tier]),
-        borderRadius:4,borderSkipped:false,borderWidth:0,
-      }]
+      datasets:[
+        {
+          label:'Mercado Atual',
+          data:sorted.map(m=>+(m.consumo/1e9).toFixed(3)),
+          backgroundColor:'rgba(59,130,246,0.85)',
+          borderRadius:{topLeft:4,bottomLeft:4,topRight:0,bottomRight:0},
+          borderSkipped:false,borderWidth:0,
+        },
+        {
+          label:'Parcela Adicional',
+          data:sorted.map(m=>+(m.adicional/1e9).toFixed(3)),
+          backgroundColor:'rgba(245,158,11,0.75)',
+          borderRadius:{topLeft:0,bottomLeft:0,topRight:4,bottomRight:4},
+          borderSkipped:false,borderWidth:0,
+        }
+      ]
     },
     options:{
       indexAxis:'y',responsive:true,maintainAspectRatio:true,
-      layout:{padding:{right:85}},
+      layout:{padding:{right:90}},
       plugins:{
         legend:{display:false},
-        tooltip:{callbacks:{
-          title:c=>{const m=sorted[c[0].dataIndex];return`${m.nome} (${m.uf})`;},
-          label:c=>{
-            const m=sorted[c.dataIndex];
-            const e=ESTADOS.find(x=>x.uf===m.uf);
-            const pct=(m.valor/62669696718*100).toFixed(1);
-            const lines=[
-              ` Mercado potencial: R$ ${(m.valor/1e9).toFixed(1)} Bi`,
-              ` Pacientes potenciais: ${m.incidencia.toLocaleString('pt-BR')}`,
-              ` % do Brasil: ${pct}%`,
-            ];
-            if(e){
-              const cresc=Math.round((300-e.fator)/300*100);
-              if(cresc>0) lines.push(` Crescimento até mercado maduro: ${cresc}%`);
-              else lines.push(` Mercado já além do benchmark (fator ${e.fator.toFixed(0)})`);
+        tooltip:{
+          mode:'index',intersect:false,
+          callbacks:{
+            title:items=>{const m=sorted[items[0].dataIndex];return`${m.nome} (${m.uf})`;},
+            label:item=>{
+              const m=sorted[item.dataIndex];
+              const e=ESTADOS.find(x=>x.uf===m.uf);
+              if(item.datasetIndex===0){
+                const lines=[
+                  ` Mercado Atual: R$ ${(m.consumo/1e9).toFixed(2)} Bi`,
+                  ` Parcela Adicional: R$ ${(m.adicional/1e9).toFixed(2)} Bi`,
+                  ` Valor Mercado Pleno: R$ ${(m.pleno/1e9).toFixed(2)} Bi`,
+                ];
+                if(e) lines.push(` Fator atual: ${e.fator.toFixed(2)} / Benchmark: 316,82`);
+                return lines;
+              }
+              return[];
             }
-            return lines;
           }
-        }}
+        }
       },
       scales:{
         x:{
+          stacked:true,
           grid:{color:'#f1f5f9'},
           ticks:{font:{size:12},callback:v=>`${v} Bi`},
-          title:{display:false}
         },
-        y:{grid:{display:false},ticks:{font:{size:13,weight:'700'},color:'#1e293b'}}
+        y:{stacked:true,grid:{display:false},ticks:{font:{size:13,weight:'700'},color:'#1e293b'}}
       }
     },
     plugins:[barLabels]
   });
 
-  // scroll hint
   const cw=document.getElementById('chart-mercado-wrap');
   const ci=cw.querySelector('.chart-scroll-inner');
   if(ci.scrollWidth>ci.clientWidth) cw.classList.add('scrollable');
